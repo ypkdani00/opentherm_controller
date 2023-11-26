@@ -1,3 +1,4 @@
+#include "common.h"
 #include <WiFiClient.h>
 #include <PubSubClient.h>
 #include "HaHelper.h"
@@ -5,6 +6,13 @@
 WiFiClient espClient;
 PubSubClient client(espClient);
 HaHelper haHelper(client);
+
+char buffer[255];
+
+extern Variables vars;
+extern Settings settings;
+extern EEManager eeSettings;
+extern TinyLogger Log;
 
 
 class MqttTask : public Task {

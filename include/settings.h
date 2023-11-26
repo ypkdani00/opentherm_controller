@@ -1,5 +1,10 @@
+#ifndef SETTING_H
+#define SETTING_H
+
+#include "Arduino.h"
+
 struct Settings {
-  bool debug = DEBUG_BY_DEFAULT;
+  bool debug = DEBUG;
   char hostname[80] = "opentherm";
 
   struct {
@@ -79,7 +84,7 @@ struct Settings {
   } sensors;
 
   char validationValue[8] = SETTINGS_VALID_VALUE;
-} settings;
+};
 
 struct Variables {
   struct {
@@ -131,4 +136,6 @@ struct Variables {
     bool resetFault = false;
     bool resetDiagnostic = false;
   } actions;
-} vars;
+};
+
+#endif

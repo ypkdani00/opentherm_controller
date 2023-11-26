@@ -2,6 +2,10 @@
 #include <GyverPID.h>
 #include <PIDtuner.h>
 
+extern Variables vars;
+extern Settings settings;
+extern TinyLogger Log;
+
 Equitherm etRegulator;
 GyverPID pidRegulator(0, 0, 0);
 PIDtuner pidTuner;

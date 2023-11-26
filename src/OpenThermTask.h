@@ -2,7 +2,10 @@
 #include <CustomOpenTherm.h>
 
 CustomOpenTherm* ot;
+extern Variables vars;
+extern Settings settings;
 extern EEManager eeSettings;
+extern TinyLogger Log;
 
 
 class OpenThermTask : public Task {

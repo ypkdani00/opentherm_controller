@@ -1,9 +1,13 @@
 #include <Blinker.h>
 
+extern Variables vars;
+extern Settings settings;
+
 extern MqttTask* tMqtt;
 extern SensorsTask* tSensors;
 extern OpenThermTask* tOt;
 extern EEManager eeSettings;
+extern TinyLogger Log;
 #if USE_TELNET
   extern ESPTelnetStream TelnetStream;
 #endif
@@ -71,13 +75,6 @@ protected:
 
       if (firstFailConnect != 0) {
         firstFailConnect = 0;
-      }
-
-      if ( Log.getLevel() == TinyLogger::Level::VERBOSE && !settings.debug ) {
-        Log.setLevel(TinyLogger::Level::INFO);
-
-      } else if ( Log.getLevel() != TinyLogger::Level::VERBOSE && settings.debug ) {
-        Log.setLevel(TinyLogger::Level::VERBOSE);
       }
 
     } else {

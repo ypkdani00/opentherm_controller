@@ -1,3 +1,13 @@
+#ifndef DEFINES_H
+#define DEFINES_H
+
+#define DEBUG                       1
+#ifdef DEBUG
+#define DEBUG_LEVEL                 TinyLogger::Level::VERBOSE
+#else
+#define DEBUG_LEVEL                 TinyLogger::Level::ERROR
+#endif
+
 #define PROJECT_NAME                "OpenTherm Gateway"
 #define PROJECT_VERSION             "1.3.4"
 #define PROJECT_REPO                "https://github.com/Laxilef/OTGateway"
@@ -22,20 +32,12 @@
 #define DEFAULT_DHW_MAX_TEMP        60
 
 
-#ifndef WM_DEBUG_MODE
-  #define WM_DEBUG_MODE WM_DEBUG_NOTIFY
-#endif
-
 #ifndef USE_SERIAL
   #define USE_SERIAL true
 #endif
 
 #ifndef USE_TELNET
   #define USE_TELNET true
-#endif
-
-#ifndef DEBUG_BY_DEFAULT
-  #define DEBUG_BY_DEFAULT false
 #endif
 
 #ifndef OT_IN_PIN_DEFAULT
@@ -54,4 +56,4 @@
   #define SENSOR_INDOOR_PIN_DEFAULT 0
 #endif
 
-char buffer[255];
+#endif

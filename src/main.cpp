@@ -1,9 +1,6 @@
-#include <Arduino.h>
-#include "defines.h"
-#include <ArduinoJson.h>
+#include "common.h"
+#include "common.h"
 #include <EEManager.h>
-#include <TinyLogger.h>
-#include "Settings.h"
 
 #if USE_TELNET
   #include "ESPTelnetStream.h"
@@ -26,6 +23,9 @@
 #include "RegulatorTask.h"
 #include "MainTask.h"
 
+Variables vars;
+Settings settings;
+
 // Vars
 EEManager eeSettings(settings, 60000);
 #if USE_TELNET
@@ -39,10 +39,13 @@ OpenThermTask* tOt;
 SensorsTask* tSensors;
 RegulatorTask* tRegulator;
 MainTask* tMain;
+TinyLogger Log = TinyLogger();
 
 
 void setup() {
-  Log.setLevel(TinyLogger::Level::VERBOSE);
+
+  Log.setLevel(DEBUG_LEVEL);
+
   #if USE_SERIAL
     Serial.begin(115200);
     Log.addStream(&Serial);
@@ -72,8 +75,6 @@ void setup() {
   } else if (eeSettingsResult == 2) {
     Log.serrorln("MAIN", PSTR("Settings NOT loaded (error)"));
   }
-
-  Log.setLevel(settings.debug ? TinyLogger::Level::VERBOSE : TinyLogger::Level::INFO);
 
   tWm = new WifiManagerTask(true);
   Scheduler.start(tWm);

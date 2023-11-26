@@ -1,6 +1,9 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
 
+extern Variables vars;
+extern Settings settings;
+extern TinyLogger Log;
 
 class SensorsTask : public LeanTask {
 public:
